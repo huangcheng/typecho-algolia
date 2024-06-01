@@ -1,4 +1,5 @@
 use futures::future;
+use markdown_to_text::convert;
 use sqlx::MySqlPool;
 
 use crate::typecho::{self, schema::GenericName};
@@ -33,7 +34,7 @@ pub async fn get_all_posts(pool: &MySqlPool) -> Result<Vec<typecho::model::Post>
                 cid: post.cid,
                 title: post.title,
                 slug: post.slug,
-                text: post.text,
+                text: convert(post.text.as_str()),
                 created: post.created,
                 modified: post.modified,
                 object_id: post.cid.to_string(),

@@ -118,6 +118,8 @@ async fn setting_index(index: &str) -> Result<(), ClientError> {
             // "categories".to_string(),
             // "tags".to_string(),
         ],
+        attributes_to_snippet: vec![format!("{}:250", "text")],
+        attributes_to_highlight: vec!["title".to_string()],
         custom_ranking: vec!["desc(created)".to_string()],
     };
 

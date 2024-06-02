@@ -73,6 +73,10 @@ pub struct IndexSetting {
     pub hits_per_page: u32,
     #[serde(rename = "searchableAttributes")]
     pub searchable_attributes: Vec<String>,
+    #[serde(rename = "attributesToSnippet")]
+    pub attributes_to_snippet: Vec<String>,
+    #[serde(rename = "attributesToHighlight")]
+    pub attributes_to_highlight: Vec<String>,
     #[serde(rename = "customRanking")]
     pub custom_ranking: Vec<String>,
 }

@@ -18,9 +18,9 @@ pub async fn main() {
 
     let posts = get_all_posts(&pool).await.expect("Failed to get all posts");
 
-    let finger = current_dir().unwrap().join("finger");
+    let fingerprint_file = current_dir().unwrap().join("fingerprint");
 
-    let hash = read_to_string(&finger).unwrap_or("".to_string());
+    let hash = read_to_string(&fingerprint_file).unwrap_or("".to_string());
 
     let posts_json = serde_json::to_string(&posts).expect("Failed to serialize posts to JSON");
 
@@ -32,7 +32,7 @@ pub async fn main() {
         return;
     }
 
-    write(&finger, format!("{:x}", md5)).expect("Failed to write finger");
+    write(&fingerprint_file, format!("{:x}", md5)).expect("Failed to write finger");
 
     sync("typecho_posts", &posts)
         .await
